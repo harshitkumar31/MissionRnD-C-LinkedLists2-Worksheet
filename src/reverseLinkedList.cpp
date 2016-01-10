@@ -18,6 +18,35 @@ struct node {
 	struct node *next;
 };
 
+struct node* reverseLL(struct node* head, struct node* prev);
+
 struct node * reverseLinkedList(struct node *head) {
-	return NULL;
+	
+	return reverseLL(head,NULL);
 }
+
+
+struct node* reverseLL(struct node* head, struct node* prev){
+
+	if (head == NULL)
+		return head;
+
+	/*if it has one node*/
+	if (head->next == NULL){
+		head->next = prev;
+		return head;
+
+		}
+	else{
+
+		struct node* temp = head->next;
+
+		head->next = prev;
+
+		head = reverseLL(temp, head);
+
+		return head;
+		}
+
+
+	}
